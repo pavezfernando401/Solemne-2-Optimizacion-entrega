@@ -1,0 +1,23 @@
+# =====================================================================
+#  p2_sched.dat  ──  Datos Parte 2 (volúmenes fijos s=1)
+#  p[k,c] = VL/tasa + limpieza:
+#    T1C0=5000/500+5=15   T1C1=5000/400+5=17.5
+#    T2C0=4000/400+5=15   T2C1=3500/500+5=12
+# =====================================================================
+
+set OPS := T1C0 T1C1 T2C0 T2C1;
+
+param p :=
+   T1C0  15
+   T1C1  17.5
+   T2C0  15
+   T2C1  12 ;
+
+param M := 100;
+
+# Precedencia dentro del camión (C0 antes de C1)
+set PREC := (T1C0,T1C1) (T2C0,T2C1) ;
+
+# Operaciones que comparten bahía:
+#   bahía Regular: T1C0 y T2C1   |   bahía Diésel: T1C1 y T2C0
+set CONF := (T1C0,T2C1) (T1C1,T2C0) ;
